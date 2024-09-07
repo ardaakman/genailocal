@@ -94,7 +94,16 @@ class KeystrokeMonitor:
             self.keyboard_controller.press(Key.backspace)
             self.keyboard_controller.release(Key.backspace)
         print(current_app, self.recent_keystrokes)
+        # Send api request to the endpoint.
+        # Send the screenshot, current_app, keyboard_input_so_far
+        resp = requests.post("http://localhost:8080/inference", files={"file": screenshot}, data={"prompt": self.recent_keystrokes, "source": current_app})
         self.recent_keystrokes = ""
+        # Output the response with keystrokes.
+        for char in resp.json()['result']:
+            self.keyboard_controller.press(char)
+            self.keyboard_controller.release(char)
+            time.sleep(0.05)
+        
 
     def on_press(self, key):
         self.last_keystroke_time = time.time()
@@ -145,10 +154,13 @@ class KeystrokeMonitor:
             screenshot = pyautogui.screenshot()
             screenshot_name = f"screenshot_{int(time.time())}.png"
             screenshot.save(screenshot_name)
+            active_app = self.get_active_app()
             time.sleep(5)
             # Send it to backend after figuring out the backend stuff. Then delete the file.
             # Delete the named file from namespace.
             try:
+                # Send the screenshot to the backend.
+                requests.post("http://localhost:8080/process-image", files={"file": screenshot}, data={"source": active_app})
                 os.remove(screenshot_name)
                 logging.info(f"Screenshot {screenshot_name} deleted.")
             except Exception as e:
