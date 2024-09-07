@@ -6,6 +6,7 @@ import json
 import base64
 import requests
 import os
+import sys
 import asyncio
 import random
 from typing import List
@@ -53,7 +54,7 @@ async def process_image_with_local_llm(image: Image.Image) -> str:
         "images": [base64_image]
     }
     if TEST:
-        return 
+        return "Test response for image processing"
     
     try:
         response = requests.post(f"{OLLAMA_API_BASE}/api/generate", json=payload)
@@ -70,7 +71,7 @@ def process_image_and_text_local_llm(prompt: str, image: Image.Image) -> str:
         "images": [base64_image]
     }
     if TEST:
-        return {"source": "test", "summary": "test", "details": "test"}
+        return "Test response for image and text processing"
     try:
         response = requests.post(f"{OLLAMA_API_BASE}/api/generate", json=payload)
         response.raise_for_status()
@@ -84,21 +85,34 @@ async def process_prompt(file: UploadFile = File(...), prompt: str = Body(...), 
     image = Image.open(io.BytesIO(contents))
     
     result = process_image_and_text_local_llm(prompt, image)
+    data = {
+        "type": "autocomplete",
+        "source": source,
+        "summary": result[:100] if len(result) > 100 else result,
+        "details": result
+    }
     # Write to history.json
     with open("history.json", "w") as file:
-        json.dump({"source": result.source, "summary": result.summary, "details": result.details}, file)
+        json.dump(data, file)
 
     # This endpoint actually has to return information to the caller.
     return {"result": result}
+
 @app.post("/process-image/")
 async def process_image_endpoint(file: UploadFile = File(...), source: str = Body(...)):
     contents = await file.read()
     image = Image.open(io.BytesIO(contents))
     
     result = await process_image_with_local_llm(image)
+    data = {
+        "type": "memory",
+        "source": source,
+        "summary": result[:100] if len(result) > 100 else result,
+        "details": result
+    }
     # Write to history.json still. No need to return anything.
     with open("history.json", "w") as file:
-        json.dump({"source": result.source, "summary": result.summary, "details": result.details}, file)
+        json.dump(data, file)
     return
 
 @app.websocket("/ws")
