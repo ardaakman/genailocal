@@ -2,23 +2,17 @@
 
 import { useState, useEffect } from "react";
 import { websocketService } from "../services/websocketService";
-
-type WebSocketMessage = {
-  source?: string;
-  summary?: string;
-  details?: string;
-  token?: string;
-};
+import { MemoryItem } from "../utils/models";
 
 export const useWebSocket = (url: string) => {
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<WebSocketMessage | null>(null);
+  const [data, setData] = useState<MemoryItem | null>(null);
 
   useEffect(() => {
     websocketService.connect(url);
 
-    const handleMessage = (message: WebSocketMessage) => {
-      if ("token" in message) {
+    const handleMessage = (message: MemoryItem) => {
+      if (message.type === "loading") {
         setLoading(true);
       } else {
         setLoading(false);

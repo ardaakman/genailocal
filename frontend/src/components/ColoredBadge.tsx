@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "../components/ui/badge";
 
 // Define a set of colors to use for badges
 const badgeColors = [

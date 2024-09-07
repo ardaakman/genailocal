@@ -1,11 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useWebSocket } from "@/hooks/useWebSocket";
-import Header from "./components/Header";
-import Toast from "./components/Toast";
-import MemoryList from "./components/MemoryList";
-import { MemoryItem } from "@/utils/models";
-import LoadingDots from "./components/LoadingDots";
+import { useWebSocket } from "../hooks/useWebSocket";
+import Header from "../components/Header";
+import Toast from "../components/Toast";
+import MemoryList from "../components/MemoryList";
+import { MemoryItem } from "../utils/models";
+import LoadingDots from "../components/LoadingDots";
 
 const Memory: React.FC = () => {
   const [memories, setMemories] = useState<MemoryItem[]>([]);

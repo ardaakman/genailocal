@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { MemoryItem } from "@/utils/models";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
+import { Separator } from "../components/ui/separator";
+import { MemoryItem } from "../utils/models";
 import ColoredBadge from "./ColoredBadge"; // Make sure to import from the correct path
 
 type MemoryCardProps = {

@@ -1,21 +1,16 @@
 // src/services/websocketService.ts
 
-type WebSocketMessage = {
-  source?: string;
-  summary?: string;
-  details?: string;
-  token?: string;
-};
+import { MemoryItem } from "../utils/models";
 
 class WebSocketService {
   private socket: WebSocket | null = null;
-  private messageHandlers: ((message: WebSocketMessage) => void)[] = [];
+  private messageHandlers: ((message: MemoryItem) => void)[] = [];
 
   connect(url: string): void {
     this.socket = new WebSocket(url);
 
     this.socket.onmessage = (event) => {
-      const data: WebSocketMessage = JSON.parse(event.data);
+      const data: MemoryItem = JSON.parse(event.data);
       this.messageHandlers.forEach((handler) => handler(data));
     };
 
@@ -28,11 +23,11 @@ class WebSocketService {
     };
   }
 
-  addMessageHandler(handler: (message: WebSocketMessage) => void): void {
+  addMessageHandler(handler: (message: MemoryItem) => void): void {
     this.messageHandlers.push(handler);
   }
 
-  removeMessageHandler(handler: (message: WebSocketMessage) => void): void {
+  removeMessageHandler(handler: (message: MemoryItem) => void): void {
     this.messageHandlers = this.messageHandlers.filter((h) => h !== handler);
   }
 

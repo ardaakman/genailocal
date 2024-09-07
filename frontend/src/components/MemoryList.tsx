@@ -1,6 +1,6 @@
 import React from "react";
 import MemoryCard from "./MemoryCard";
-import { MemoryItem } from "@/utils/models";
+import { MemoryItem } from "../utils/models";
 
 type MemoryListProps = {
   memories: MemoryItem[];
