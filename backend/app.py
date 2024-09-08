@@ -1,3 +1,4 @@
+import tempfile
 from fastapi import FastAPI, File, UploadFile, HTTPException, Body, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
@@ -10,6 +11,8 @@ import sys
 import asyncio
 import random
 from typing import List
+
+from model import GeneralistModel, ConversationModel
 
 app = FastAPI()
 
@@ -25,6 +28,11 @@ OLLAMA_API_BASE = "http://localhost:11434"
 MODEL_NAME = "llava"
 TEST = False
 
+general_agent = GeneralistModel()
+ConversationModel = ConversationModel()
+
+HISTORY_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "history.json")
+print(HISTORY_PATH)
 class ConnectionManager:
     def __init__(self):
         self.active_connections: List[WebSocket] = []
@@ -63,7 +71,7 @@ async def process_image_with_local_llm(image: Image.Image) -> str:
     except requests.RequestException as e:
         raise HTTPException(status_code=500, detail=f"Error communicating with Ollama: {str(e)}")
 
-def process_image_and_text_local_llm(prompt: str, image: Image.Image) -> str:
+def process_image_and_text_local_llm(image: Image.Image, prompt: str, ) -> str:
     base64_image = encode_image_to_base64(image)
     payload = {
         "model": MODEL_NAME,
@@ -84,7 +92,9 @@ async def process_prompt(file: UploadFile = File(...), prompt: str = Body(...), 
     contents = await file.read()
     image = Image.open(io.BytesIO(contents))
     
-    result = process_image_and_text_local_llm(prompt, image)
+    # result = process_image_and_text_local_llm(image, prompt)
+    encoded_image = encode_image_to_base64(image)
+    result = json.loads(general_agent.forward(encoded_image))
     data = {
         "type": "autocomplete",
         "source": source,
@@ -92,7 +102,7 @@ async def process_prompt(file: UploadFile = File(...), prompt: str = Body(...), 
         "details": result
     }
     # Write to history.json
-    with open("history.json", "w") as file:
+    with open(HISTORY_PATH, "w") as file:
         json.dump(data, file)
 
     # This endpoint actually has to return information to the caller.
@@ -101,18 +111,23 @@ async def process_prompt(file: UploadFile = File(...), prompt: str = Body(...), 
 @app.post("/process-image/")
 async def process_image_endpoint(file: UploadFile = File(...), source: str = Body(...)):
     contents = await file.read()
-    image = Image.open(io.BytesIO(contents))
+    with tempfile.NamedTemporaryFile(delete=False, suffix='.png') as tmp_file:
+        tmp_file.write(contents)
+        tmp_file_path = tmp_file.name
     
-    result = await process_image_with_local_llm(image)
-    data = {
-        "type": "memory",
-        "source": source,
-        "summary": result[:100] if len(result) > 100 else result,
-        "details": result
-    }
+    result = general_agent.forward(tmp_file_path)
+    print("Result: ", result)
+    # image = Image.open(tmp_file_path)
+    # result = await process_image_with_local_llm(image)
+    # data = {
+    #     "type": "memory",
+    #     "source": source,
+    #     "summary": result[:100] if len(result) > 100 else result,
+    #     "details": result
+    # }
     # Write to history.json still. No need to return anything.
-    with open("history.json", "w") as file:
-        json.dump(data, file)
+    with open(HISTORY_PATH, "w") as file:
+        json.dump(result, file)
     return
 
 @app.websocket("/")
@@ -125,12 +140,12 @@ async def websocket_endpoint(websocket: WebSocket):
             await manager.send_personal_message({"token": "loading"}, websocket)
 
             # Check if history.json exists
-            if os.path.exists("history.json"):
+            if os.path.exists(HISTORY_PATH):
                 try:
-                    with open("history.json", "r") as file:
-                        data = json.load(file)
+                    with open(HISTORY_PATH, "r") as file:
+                        data = json.loads(file)
                     if not TEST:
-                        os.remove("history.json")  # Delete the file after reading
+                        os.remove(HISTORY_PATH)  # Delete the file after reading
                 except json.JSONDecodeError:
                     data = {"error": "Invalid or empty data file"}
                 except Exception as e:
