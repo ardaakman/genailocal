@@ -14,3 +14,5 @@ starlette==0.38.4
 typing_extensions==4.12.2
 tzdata==2024.1
 urllib3==2.2.2
+uvicorn
+websockets

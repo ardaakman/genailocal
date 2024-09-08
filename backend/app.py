@@ -115,9 +115,10 @@ async def process_image_endpoint(file: UploadFile = File(...), source: str = Bod
         json.dump(data, file)
     return
 
-@app.websocket("/ws")
+@app.websocket("/")
 async def websocket_endpoint(websocket: WebSocket):
     await manager.connect(websocket)
+    counter = 0
     try:
         while True:
             # Simulate loading
@@ -125,20 +126,36 @@ async def websocket_endpoint(websocket: WebSocket):
 
             # Check if history.json exists
             if os.path.exists("history.json"):
-                with open("history.json", "r") as file:
-                    data = json.load(file)
-                if not(TEST):
-                    os.remove("history.json")  # Delete the file after reading
+                try:
+                    with open("history.json", "r") as file:
+                        data = json.load(file)
+                    if not TEST:
+                        os.remove("history.json")  # Delete the file after reading
+                except json.JSONDecodeError:
+                    data = {"error": "Invalid or empty data file"}
+                except Exception as e:
+                    data = {"error": f"Error reading data: {str(e)}"}
             else:
-                await asyncio.sleep(2)  # Sleep for 2 seconds if file doesn't exist
-                continue  # Skip to next iteration of the loop
+                data = {
+                    "type": "memory",
+                    "source": "twitter",
+                    "summary": "hello hello",
+                    "details": "hello hello hello hello",
+                }
+                counter += 1
 
             # Send data
             await manager.send_personal_message(data, websocket)
-            await asyncio.sleep(random.uniform(3, 8))  # Random delay between 3 to 8 seconds
+
+            # Wait for a random time between 3 to 8 seconds before the next iteration
+            await asyncio.sleep(random.uniform(3, 8))
 
     except WebSocketDisconnect:
         manager.disconnect(websocket)
+    except Exception as e:
+        print(f"WebSocket error: {str(e)}")
+        manager.disconnect(websocket)
+
 
 if __name__ == "__main__":
     # If test is specified, make the global "test" flag true.

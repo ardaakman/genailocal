@@ -18,10 +18,12 @@
     "next": "14.2.8",
     "react": "^18",
     "react-dom": "^18",
+    "shadcn": "^2.0.4",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@shadcn/ui": "^0.0.4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

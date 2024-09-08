@@ -2,6 +2,7 @@ import subprocess
 import time
 import requests
 import os
+import io
 import logging
 from pynput import keyboard
 from pynput.keyboard import Key, Controller
@@ -18,6 +19,7 @@ class KeystrokeMonitor:
 
         # Initialize the keyboard controller
         self.keyboard_controller = Controller()
+        self.is_typing_programmatically = False
 
         # Variable to store the recent keystrokes
         self.recent_keystrokes = ""
@@ -86,27 +88,58 @@ class KeystrokeMonitor:
 
     def process_captured_input(self):
         # Process the captured input and call the API
-        current_app = self.get_active_app()
-        # Take a screenshot as well, with current_app, keyboard_input_so_far, screenshot
         screenshot = pyautogui.screenshot()
+        screenshot_buffer = io.BytesIO()
+        screenshot.save(screenshot_buffer, format='PNG')
+        screenshot_buffer.seek(0)
+        
+        current_app = self.get_active_app()
+
         # Send api request to endpoint. 
         for _ in range(len(self.recent_keystrokes)):
             self.keyboard_controller.press(Key.backspace)
             self.keyboard_controller.release(Key.backspace)
-        print(current_app, self.recent_keystrokes)
         # Send api request to the endpoint.
         # Send the screenshot, current_app, keyboard_input_so_far
-        resp = requests.post("http://localhost:8080/inference", files={"file": screenshot}, data={"prompt": self.recent_keystrokes, "source": current_app})
-        self.recent_keystrokes = ""
-        # Output the response with keystrokes.
-        for char in resp.json()['result']:
-            self.keyboard_controller.press(char)
-            self.keyboard_controller.release(char)
-            time.sleep(0.05)
+        try:
+            resp = requests.post(
+                "http://localhost:8080/inference", 
+                files={"file": ("screenshot.png", screenshot_buffer, "image/png")},
+                data={"prompt": self.recent_keystrokes, "source": current_app}
+            )
+            resp.raise_for_status()  # Raise an exception for bad status codes
+
+            self.recent_keystrokes = ""
+            # Output the response with keystrokes.
+            result = resp.json().get('result', '')
+            self.is_typing_programmatically = True
+            for index, char in enumerate(result):
+                logging.debug(f"Typing character {index}: {repr(char)}")
+                try:
+                    if char == '\n':
+                        self.keyboard_controller.press(Key.enter)
+                        self.keyboard_controller.release(Key.enter)
+                    elif char.isprintable():
+                        self.keyboard_controller.press(char)
+                        self.keyboard_controller.release(char)
+                    else:
+                        logging.warning(f"Skipping non-printable character: {repr(char)}")
+                    time.sleep(0.02)  # Adjust this delay as needed
+                except Exception as e:
+                    logging.exception(f"Error typing character {index} ({repr(char)}): {e}")
+                    # Optionally break here if you want to stop on first error
+                    self.is_typing_programmatically = False
+            self.is_typing_programmatically = False
+            logging.info("Typing process completed")
+
+        except requests.exceptions.RequestException as e:
+            print(f"Error sending inference request: {e}")
         
 
     def on_press(self, key):
         self.last_keystroke_time = time.time()
+        if self.is_typing_programmatically:
+            return
         try:
             if isinstance(key, keyboard.KeyCode):
                 self.recent_keystrokes += key.char
@@ -153,18 +186,21 @@ class KeystrokeMonitor:
         while True:
             screenshot = pyautogui.screenshot()
             screenshot_name = f"screenshot_{int(time.time())}.png"
-            screenshot.save(screenshot_name)
+            screenshot_path = os.path.join(os.getcwd(), screenshot_name)
+            screenshot.save(screenshot_path)
             active_app = self.get_active_app()
             time.sleep(5)
-            # Send it to backend after figuring out the backend stuff. Then delete the file.
-            # Delete the named file from namespace.
+
             try:
-                # Send the screenshot to the backend.
-                requests.post("http://localhost:8080/process-image", files={"file": screenshot}, data={"source": active_app})
-                os.remove(screenshot_name)
+                # Send the screenshot to the backend
+                with open(screenshot_path, 'rb') as file:
+                    requests.post("http://localhost:8080/process-image", files={"file": file}, data={"source": active_app})
+                
+                # Delete the file
+                os.remove(screenshot_path)
                 logging.info(f"Screenshot {screenshot_name} deleted.")
             except Exception as e:
-                logging.error(f"Error deleting screenshot {screenshot_name}: {e}")
+                logging.error(f"Error processing or deleting screenshot {screenshot_name}: {e}")
 
 
     def run(self):
