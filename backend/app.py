@@ -105,17 +105,17 @@ async def process_prompt(prompt: str = Body(...), source: str = Body(...)):
             history = json.load(file)
 
         prompt = autocompletion_prompt.format(context=history, prompt=prompt)
-        print("this is the prompt: ", prompt)
         response = ollama_agent.forward(prompt)
-        print("this is the response: ", response)
 
         data = {
-            "type": "autocomplete",
+            "type": "autocompletion",
             "source": source,
             "summary": response[:100] if len(response) > 100 else response,
             "details": response
         }
-        
+
+        with open(STREAM_PATH, "w") as file:
+            json.dump(json.dumps(data), file)
 
         # This endpoint actually has to return information to the caller.
         return {"result": response}
@@ -140,6 +140,7 @@ async def process_image_endpoint(file: UploadFile = File(...), source: str = Bod
             
             history = json.load(file)
             print("history: ", history)
+            result['type'] = 'memory'
             history.append(result)
             file.seek(0)
             json.dump(history, file, indent=2)
@@ -162,7 +163,6 @@ async def websocket_endpoint(websocket: WebSocket):
                 try:
                     with open(STREAM_PATH, "r") as file:
                         data = json.loads(json.load(file))
-                        data["type"] = "memory"
                     if not TEST:
                         os.remove(STREAM_PATH)  # Delete the file after reading
                 except json.JSONDecodeError:
