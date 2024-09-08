@@ -109,13 +109,6 @@ async def process_prompt(prompt: str = Body(...), source: str = Body(...)):
         response = ollama_agent.forward(prompt)
         print("this is the response: ", response)
 
-        data = {
-            "type": "autocomplete",
-            "source": source,
-            "summary": response[:100] if len(response) > 100 else response,
-            "details": response
-        }
-
         # This endpoint actually has to return information to the caller.
         return {"result": response}
     except Exception as e:
