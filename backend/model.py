@@ -1,5 +1,6 @@
 import base64
 import os
+import requests
 
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -85,3 +86,23 @@ class ConversationModel(GPTModel):
             temperature=0.2,
         )
         return response.choices[0].message.content
+
+
+class OllamaModel():
+    def __init__(self, *, model_name, ollama_endpoint):
+        self.model_name = model_name
+        self.endpoint = ollama_endpoint
+
+
+    def forward(self, prompt: str) -> str:
+        payload = {
+            "model": self.model_name,
+            "prompt": prompt,
+            "stream": False
+        }
+        try:
+            response = requests.post(f"{self.endpoint}/api/generate", json=payload)
+            response.raise_for_status()
+            return response.json()['response']
+        except requests.RequestException as e:
+            raise Exception(f"Error communicating with Ollama: {str(e)}")

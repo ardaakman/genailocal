@@ -12,7 +12,8 @@ import asyncio
 import random
 from typing import List
 
-from model import GeneralistModel, ConversationModel
+from model import GeneralistModel, ConversationModel, OllamaModel
+from prompting import autocompletion_prompt
 
 app = FastAPI()
 
@@ -30,6 +31,7 @@ TEST = False
 
 general_agent = GeneralistModel()
 ConversationModel = ConversationModel()
+ollama_agent = OllamaModel(model_name=MODEL_NAME, ollama_endpoint=OLLAMA_API_BASE)
 
 HISTORY_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "history.json")
 print(HISTORY_PATH)
@@ -89,25 +91,34 @@ def process_image_and_text_local_llm(image: Image.Image, prompt: str, ) -> str:
         raise HTTPException(status_code=500, detail=f"Error communicating with Ollama: {str(e)}")
 
 @app.post("/inference")
-async def process_prompt(file: UploadFile = File(...), prompt: str = Body(...), source: str = Body(...)):
-    contents = await file.read()
-    image = Image.open(io.BytesIO(contents))
-    
-    # result = process_image_and_text_local_llm(image, prompt)
-    encoded_image = encode_image_to_base64(image)
-    result = json.loads(general_agent.forward(encoded_image))
-    data = {
-        "type": "autocomplete",
-        "source": source,
-        "summary": result[:100] if len(result) > 100 else result,
-        "details": result
-    }
-    # Write to history.json
-    with open(HISTORY_PATH, "w") as file:
-        json.dump(data, file)
+async def process_prompt(prompt: str = Body(...), source: str = Body(...)):
+    # History file
+    with open(HISTORY_PATH, "r") as file:
+        history = json.load(file)
 
-    # This endpoint actually has to return information to the caller.
-    return {"result": result}
+    prompt = autocompletion_prompt.format(context=history, prompt=prompt)
+    ollama_agent.forward(prompt)
+
+
+# async def process_prompt(file: UploadFile = File(...), prompt: str = Body(...), source: str = Body(...)):
+#     contents = await file.read()
+#     image = Image.open(io.BytesIO(contents))
+    
+#     # result = process_image_and_text_local_llm(image, prompt)
+#     encoded_image = encode_image_to_base64(image)
+#     result = json.loads(general_agent.forward(encoded_image))
+#     data = {
+#         "type": "autocomplete",
+#         "source": source,
+#         "summary": result[:100] if len(result) > 100 else result,
+#         "details": result
+#     }
+#     # Write to history.json
+#     with open(HISTORY_PATH, "w") as file:
+#         json.dump(data, file)
+
+#     # This endpoint actually has to return information to the caller.
+#     return {"result": result}
 
 @app.post("/process-image/")
 async def process_image_endpoint(file: UploadFile = File(...), source: str = Body(...)):

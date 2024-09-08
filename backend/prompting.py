@@ -1,3 +1,13 @@
+autocompletion_prompt = """
+You are a helpful assistant. Based on the user's prompt and the context provided, suggest an autocomplete response that is in the user's voice and relevant to their current needs. Do not include any assistant messages or explanations—just the response. 
+
+Context: {context}
+
+Prompt: {prompt}
+
+Response:
+"""
+
 generalist_prompt = """
 **Task:**
 Analyze the content displayed on the screen and output structured data based on what is visible. The content could include a calendar, a dialogue (chat), or tabular data. For each type of content, transcribe the relevant information into a structured JSON format.
