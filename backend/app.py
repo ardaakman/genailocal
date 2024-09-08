@@ -99,13 +99,28 @@ def process_image_and_text_local_llm(image: Image.Image, prompt: str, ) -> str:
 
 @app.post("/inference")
 async def process_prompt(prompt: str = Body(...), source: str = Body(...)):
-    # History file
-    with open(HISTORY_PATH, "r") as file:
-        history = json.load(file)
+    # History file. Do not use for now.
+    try:
+        with open(HISTORY_PATH, "r") as file:
+            history = json.load(file)
 
-    prompt = autocompletion_prompt.format(context=history, prompt=prompt)
-    ollama_agent.forward(prompt)
+        prompt = autocompletion_prompt.format(context=history, prompt=prompt)
+        print("this is the prompt: ", prompt)
+        response = ollama_agent.forward(prompt)
+        print("this is the response: ", response)
 
+        data = {
+            "type": "autocomplete",
+            "source": source,
+            "summary": response[:100] if len(response) > 100 else response,
+            "details": response
+        }
+
+        # This endpoint actually has to return information to the caller.
+        return {"result": response}
+    except Exception as e:
+        print(f"Error processing prompt: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error processing prompt: {str(e)}")
 
 
 @app.post("/process-image/")
