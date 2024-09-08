@@ -1,15 +1,6 @@
-AGI hackathon project: auto-completion of text based on the GUI window context using local inference on Intel AI machines.
+## ThirdEye: Store your entire working session as context
+ThirdEye stores your entire UI history as context, giving instant access to your information. 
 
-Inference server 
-  1. RESTFUL API 
-     2. POST screen context /screenshots -> once every 5 seconds 
-     3. POST dialog context /dialog -> once every 1 second 
-  2. Websocket for memory updated in real-time, stream tokens to the frontend
-     1. source: string  
-     2. summary: string 
-     3. details: string 
-   
-  UI 
-  1. Each component drop down
-     1. App Source name 
-     2. Press on it to get the details of it. 
+Users can get an LLM completion on any application, by starting a session with "#//" keys, writing a prompt, and triggering a completion with the `control` key.
+
+ThirdEye is designed with privacy at heart, able to be modified to run only locally on device. 
