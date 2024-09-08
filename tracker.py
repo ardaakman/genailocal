@@ -104,7 +104,7 @@ class KeystrokeMonitor:
         try:
             resp = requests.post(
                 "http://localhost:8080/inference", 
-                files={"file": ("screenshot.png", screenshot_buffer, "image/png")},
+                # files={"file": ("screenshot.png", screenshot_buffer, "image/png")},
                 data={"prompt": self.recent_keystrokes, "source": current_app}
             )
             resp.raise_for_status()  # Raise an exception for bad status codes
