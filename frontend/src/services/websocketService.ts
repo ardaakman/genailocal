@@ -11,6 +11,7 @@ class WebSocketService {
 
     this.socket.onmessage = (event) => {
       const data: MemoryItem = JSON.parse(event.data);
+      console.log("Parsed data: ", data);
       this.messageHandlers.forEach((handler) => handler(data));
     };
 

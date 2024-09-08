@@ -45,6 +45,7 @@ class ConnectionManager:
         self.active_connections.remove(websocket)
 
     async def send_personal_message(self, message: dict, websocket: WebSocket):
+        print(f"Sending: {message} with type: {type(message)}")
         await websocket.send_json(message)
 
 manager = ConnectionManager()
@@ -143,27 +144,19 @@ async def websocket_endpoint(websocket: WebSocket):
             if os.path.exists(HISTORY_PATH):
                 try:
                     with open(HISTORY_PATH, "r") as file:
-                        data = json.loads(file)
+                        data = json.loads(json.load(file))
+                        data["type"] = "memory"
                     if not TEST:
                         os.remove(HISTORY_PATH)  # Delete the file after reading
                 except json.JSONDecodeError:
                     data = {"error": "Invalid or empty data file"}
                 except Exception as e:
                     data = {"error": f"Error reading data: {str(e)}"}
-            else:
-                data = {
-                    "type": "memory",
-                    "source": "twitter",
-                    "summary": "hello hello",
-                    "details": "hello hello hello hello",
-                }
-                counter += 1
-
-            # Send data
-            await manager.send_personal_message(data, websocket)
+            
+                await manager.send_personal_message(data, websocket)
 
             # Wait for a random time between 3 to 8 seconds before the next iteration
-            await asyncio.sleep(random.uniform(3, 8))
+            await asyncio.sleep(1)
 
     except WebSocketDisconnect:
         manager.disconnect(websocket)
