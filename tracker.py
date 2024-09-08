@@ -194,8 +194,10 @@ class KeystrokeMonitor:
                 # Send the screenshot to the backend
                 with open(screenshot_path, 'rb') as file:
                     requests.post("http://localhost:8080/process-image", files={"file": file}, data={"source": active_app})
-                
-                # Delete the file
+                # Delete the screenshot after capturing screen.
+
+
+
                 os.remove(screenshot_path)
                 logging.info(f"Screenshot {screenshot_name} deleted.")
             except Exception as e:

@@ -1,0 +1,266 @@
+[
+  {
+    "source": "Terminal - Python Script Execution",
+    "summary": "Chat bot conversation and terminal code execution",
+    "details": "Chat 1:\n- User: 'What's up?'\n- ChatGPT: 'Hi! I'm here to help.'\n\nChat 2:\n- User: 'Can you tell me a joke?'\n- ChatGPT: 'Why don't scientists trust atoms? Because they make up everything!'\n\nTerminal Code Execution:\n- Command: \"python3 tracker.py\"\n- Action: Starts the execution of the tracker.py script possibly designed to interface with OpenAI's GPT model.",
+    "type": "memory"
+  },
+  {
+    "source": "Google Calendar",
+    "summary": "Calendar events for September 7, 2024",
+    "details": "Event 1: 'Local LLM Hackathon' | Date: 2024-09-07 | Time: All day\nEvent 2: 'Learning Reminder' | Date: 2024-09-07 | Start: 9:00 PM | End: N/A | Event 3: 'Ride of Shame, Bart' | Date: 2024-09-07 | Start: 1:00 PM | End: N/A",
+    "type": "memory"
+  },
+  {
+    "source": "Hugging Face Spaces - open_vlm_leaderboard",
+    "summary": "Leaderboard table displaying model names, splits, datasets, and metrics",
+    "details": "Header: 'Model Name', 'Split', 'Dataset', 'Metric', 'Value'\\nRow 1: 'Beit-3B', 'val', 'nocaps', 'CIDEr', '140.3'\\nRow 2: 'Flava', 'val', 'nocaps', 'CIDEr', '91.2'\\nRow 3: 'OFA-Large', 'val', 'nocaps', 'CIDEr', '90.1'\\n(and more rows follow with similar data)",
+    "type": "memory"
+  },
+  {
+    "source": "Apple Notes",
+    "summary": "Notes content with a reminder for a Jira ticket",
+    "details": "Note Title: 'For the jira ticket' | Date: 7 September 2024 at 20:27 | Content: 'Please don\u2019t forget to update the /auth endpoint! Or I will be very sad.'",
+    "type": "memory"
+  },
+  {
+    "source": "iMessage",
+    "summary": "Conversation log in iMessage",
+    "details": "Sameer: 'You unsent a message'\nEthan JAGODA: 'Where are u sitting' | Time: 20:16\nTiny Dorm Exec: 'Ethan JAGODA loved \u201c#happybirthdayathannnnn!!\u201d' | Time: 19:08\nJai, Jayaditya, Vaibhav US & 1 more: 'I sent it to ur Berkeley email' | Time: 17:48\nMaybe: Jay Sethi: 'This house is so gay' | Time: 15:32\n37981: 'The host of the good place: galilee lane sent a Text Blast - ...' | Time: 16:35\nFrancis Sigma: 'Thanks!' | Time: 10:31\nHillegASS: 'No haha I had my chocolate ones' | Time: 10:19\nShore House: 'So YAYYY can't wait guys \ud83c\udf89\ud83d\ude0a' | Time: 07:48\nUser: 'Happy birthday Deniz! Have a good one man, you deserve it.' | Time: 20:27 - Delivered",
+    "type": "memory"
+  },
+  {
+    "source": "iMessage",
+    "summary": "Conversation log",
+    "details": "- Mehmet Deniz ABD: Information: ... return winBounds. | Time: Unknown\n- (same message repeated): Information: ... return winBounds. | Time: Unknown\n- Today 20:27: 'Happy birthday Deniz! Have a good one man, you deserve it.' | Delivered",
+    "type": "memory"
+  },
+  {
+    "source": "Messaging App",
+    "summary": "Chat conversation with Mehmet Deniz ABD",
+    "details": "\n1. Ethan JAGODA: 'You unsent a message' | Time: 20:16\n2. Grocery getters: 'Where are u sitting' | Time: 20:11\n3. Tiny Dorm Exec: 'Ethan JAGODA loved \u201chappy birthday deezahannnnnn!!!\u201d' | Time: 19:08\n4. Jai, Jayaditya, Vaihaby, US et : 'I sent it to our Berkeley email' | Time: 17:48\n5. Maybe; Jay Sethi: 'This house is so gay' | Time: 17:34\n6. 39781: 'The host of the good place: galilee lane sent a Text Blast -...' | Time: 16:35\n7. 64132: 'Luma: Atal Agarwal invited you to Immigrant Founders Networking...' | Time: 12:43\n8. Francis Sigma: 'Thanks!' | Time: 10:49\n9. HillegASS: 'o nah I had my chocolate ones' | Time: 10:19\n10. Jai, Nirav, Meena Rug...: 'I'll show her' | Time: 09:48\n11. Shore House: 'GAYYYY can\u2019t wait guys \ud83e\udd0d\ud83e\udd0d' | Time: Yesterday\n12. To: Mehmet Deniz ABD: 'Happy birthday Deniz! Have a good one man, you deserve it.' | Time: Today 20:27",
+    "type": "memory"
+  },
+  {
+    "source": "iMessage",
+    "summary": "Conversation log in iMessage",
+    "details": "Sender: You | Message: You unsent a message with 'Nihan DAGODA: Where are u sitting? Happy birthdayyyyyy'} Time: 20:19\nSender: Yasin | Message: 'Happy birthday Deniz! He stayed up until he woke up.' Time: 21:08",
+    "type": "memory"
+  },
+  {
+    "source": "iMessage",
+    "summary": "No current conversation content available",
+    "details": "The screen displays an 'Autocomplete Suggestion' with 'Nothing to show' and a placeholder for a conversation log in iMessage at 9:14:41 PM. No specific message content is visible.",
+    "type": "memory"
+  },
+  {
+    "source": "iMessage",
+    "summary": "Conversation log",
+    "details": "No current conversation content available. Last interaction logged at 9:14:52 PM.",
+    "type": "memory"
+  },
+  {
+    "source": "Google Calendar",
+    "summary": "Calendar events for September 7, 2024",
+    "details": "Event 1: Local LLM Hackathon | Date: 2024-09-07 | Start: 12:00 PM | End: 8:00 PM\nEvent 2: Learning Reminder | Date: 2024-09-07 | Start: 9:00 PM | End: 10:00 PM\nEvent 3: Ride of shame on BART | Date: 2024-09-07 | Start: 10:00 PM | End: 11:00 PM",
+    "type": "memory"
+  },
+  {
+    "source": "Evaluation Results Dashboard",
+    "summary": "Table displaying evaluation results of various models.",
+    "details": "Header: 'Rank', 'Method', 'Param (B)', 'Language Model', 'Vision Model', 'Avg Score', 'Avg Rank', 'MMBench_V11', 'MMStar'\nRow 1: '6', 'Claude3.5-Sonnet', '', '', '', '67.9', '9.75', '78.5', '62.2'\nRow 2: '7', 'InternVL2-26B', '26', 'InternLM2-20B', 'InternViT-6B', '66.4', '9.88', '81.2', '61'\nRow 3: '', 'GPT-4o (0513, detail-', '', '', '', '65.7', '13.88', '82.8', '61.6'\nRow 4: '9', 'CongRong', '', '', '', '65.5', '12.25', '80.7', '60.6'\nRow 5: '10', 'MiniCPM-V-2.6', '8', 'Qwen2-7B', 'SigLIP-400M', '65.2', '13.62', '78', '57.5'\nRow 6: '11', 'Gemini-1.5-Pro', '', '', '', '64.4', '16.75', '73.9', '59.1'\nRow 7: '12', 'GPT-4o-mini (0718, de', '', '', '', '64.1', '18.75', '76', '54.8'\nRow 8: '13', 'InternVL2-8B', '8', 'InternLM2.5-7B', 'InternViT-300M', '64.1', '15', '79.4', '61.5'\nRow 9: '14', 'Ovisi1.5-Gemma2-9B', '11.4', 'Gemma2-9B-It', 'SigLIP-400M', '64', '15.62', '77.3', '58.1'\nRow 10: '15', 'Yi-Vision', '', '', '', '63.8', '18.12', '76.3', '60.5'\nRow 11: '16', 'GPT-4v (0409, detail-', '', '', '', '63.5', '18.38', '79.8', '56'\nRow 12: '17', 'MMAlaya2', '26', 'InternLM2-20B', 'InternViT-6B', '62.6', '18.38', '80.2', '58.1'",
+    "type": "memory"
+  },
+  {
+    "source": "Webpage Table - Model Evaluation Data",
+    "summary": "Table of AI model evaluation metrics",
+    "details": "Header: 'Rank', 'Method', 'Param (B)', 'Language Model', 'Vision Model', 'Avg Score', 'Avg Rank', 'MMBench_V11', 'MMStar'\nRow 1: '1', 'GPT-4o (0806, detail-', '', '', '', '71.5', '4.12', '80.5', '64.7'\nRow 2: '2', 'InternVL2-Llama3-76B', '76', 'Llama-3-70B-Instruct', 'InternViT-6B', '71', '3.62', '85.5', '67.1'\nRow 3: '3', 'GPT-4o (0513, detail-', '', '', '', '69.9', '6', '82.2', '63.9'\nRow 4: '4', 'InternVL2-40B', '40', 'Nous-Hermes-2-Yi-34B', 'InternViT-6B', '69.7', '4.75', '85', '64.7'\nRow 5: '5', 'Step-1.5V', '', '', 'stepencoder', '68.4', '7.62', '82.5', '63.3'\nRow 6: '6', 'Claude3.5-Sonnet', '', '', '', '67.9', '9.75', '78.5', '62.2'\nRow 7: '7', 'InternVL2-26B', '26', 'InternLM2-20B', 'InternViT-6B', '66.4', '9.88', '81.2', '61'\nRow 8: '8', 'GPT-4o (0513, detail-', '', '', '', '65.7', '13.88', '82.8', '61.6'\nRow 9: '9', 'CongRong', '', '', '', '65.5', '12.25', '80.7', '60.6'\nRow 10: '10', 'MiniCPM-V-2.6', '8', 'Qwen2-7B', 'SigLIP-400M', '65.2', '13.62', '78', '57.5'\nRow 11: '11', 'Gemini-1.5-Pro', '', '', '', '64.4', '16.75', '73.9', '59.1'\nRow 12: '12', 'GPT-4-o-mini (0718, de', '', '', '', '64.1', '18.75', '76', '54.8'",
+    "type": "memory"
+  },
+  {
+    "source": "Calendar Application",
+    "summary": "Calendar events for the day",
+    "details": "Event 1: Code Review | Date: 2024-09-07 | Start: 9:00 PM | End: 10:00 PM\nEvent 2: Learning Reminder | Date: 2024-09-07 | Start: 12:00 PM | End: 8:00 PM\nEvent 3: Ride of shame on BAX | Date: 2024-09-07 | Start: 9:00 PM | End: 10:00 PM",
+    "type": "memory"
+  },
+  {
+    "source": "Presentation Slide",
+    "summary": "Introduction slide for ThirdEye project.",
+    "details": "Title: ThirdEye\nSubtitle: Your entire UI history as context\nAuthors: Arda, Daniel, Deniz, Pawan",
+    "type": "memory"
+  },
+  {
+    "source": "Slide Presentation",
+    "summary": "Introduction slide of 'ThirdEye' presentation",
+    "details": "Title: ThirdEye | Subtitle: 'your entire UI history as context' | Authors: Arda, Daniel, Deniz, Pawan",
+    "type": "memory"
+  },
+  {
+    "source": "Presentation Slide",
+    "summary": "Title slide of a presentation about ThirdEye.",
+    "details": "The slide contains the title 'ThirdEye', the tagline 'your entire UI history as context', and the names 'Arda, Daniel, Deniz, Pawan'.",
+    "type": "memory"
+  },
+  {
+    "source": "Presentation Slide",
+    "summary": "Cover slide of a presentation",
+    "details": "Title: ThirdEye\nSubtitle: your entire UI history as context\nAuthors: Arda, Daniel, Deniz, Pawan",
+    "type": "memory"
+  },
+  {
+    "source": "ThirdEye Presentation",
+    "summary": "Slide content with project name and tagline.",
+    "details": "Project Title: ThirdEye | Tagline: your entire UI history as context | Team Members: Arda, Daniel, Deniz, Pawan.",
+    "type": "memory"
+  },
+  {
+    "source": "PowerPoint Presentation",
+    "summary": "Title slide from a presentation",
+    "details": "Title: 'ThirdEye'\nSubtitle: 'your entire UI history as context'\nAuthors: Arda, Daniel, Deniz, Pawan",
+    "type": "memory"
+  },
+  {
+    "source": "Hugging Face Spaces, Google Calendar",
+    "summary": "Display of leaderboard data and calendar events for September 2024.",
+    "details": "Leaderboard Data Source: Hugging Face Spaces\\n\\nHeader: 'Rank', 'Method', 'Param (B)', 'Language Model', 'Vision Model', 'Avg Score', 'Avg Rank'\\nRow 1: '1', 'GPT-4o (0806, detail)', '76', '-', '-', '71.5', '4.12'\\nRow 2: '2', 'InternLM-2-Llama3-70B', '70', 'Llama-3-70B-Instruct', 'InternViT-68', '71', '3.62'\\n...\\n\\nCalendar Data Source: Google Calendar\\n\\nEvent 1: 'Yamousum' | Date: 2024-09-07 | Start: 8:00 AM | End: 12:00 PM\\nEvent 2: 'AI Goes Local' | Date: 2024-09-07 | Start: 11:00 AM | End: 1:00 PM\\nEvent 3: 'Calvin' | Date: 2024-09-07 | Start: 2:00 PM | End: 4:30 PM\\nEvent 4: 'SF Startup Series' | Date: 2024-09-07 | Start: 5:00 PM | End: 6:00 PM\\nEvent 5: 'Housewarming Dinner' | Date: 2024-09-07 | Start: 8:00 PM | End: -\\nEvent 6: 'Anya' | Date: 2024-09-07 | Start: 7:00 PM | End: 8:00 PM",
+    "type": "memory"
+  },
+  {
+    "source": "Google Sheets and Google Calendar",
+    "summary": "Leaderboard scores and calendar events",
+    "details": "Leaderboard Scores:\n- GPT4o - 71.5 Avg Score\n- Claude3.5-Sonnet - 66.4 Avg Score\n\nCalendar Events:\n- AI Goes Local | Date: 2024-09-07 | Start: 11:00 AM | End: 8:00 PM\n- Housewarming Dinner | Date: 2024-09-07 | Start: 7:30 PM | End: 11:00 PM",
+    "type": "memory"
+  },
+  {
+    "source": "Google Calendar and a web page with leaderboard scores",
+    "summary": "Calendar events and leaderboard scores",
+    "details": "Leaderboard Scores:\n- GPT4o: 71.5 Avg Score\n- Claude3.5-Sonnet: 66.4 Avg Score\n\nCalendar Events:\n- AI Goes Local | Date: 2024-09-07 | Start: 11:00 AM | End: 8:00 PM\n- Housewarming Dinner | Date: 2024-09-07 | Start: 7:30 PM | End: 11:00 PM",
+    "type": "memory"
+  },
+  {
+    "source": "Email Interface",
+    "summary": "Email draft and response regarding Strawberry Evaluation Results",
+    "details": "Draft Email: To - Arda Akman | Subject - [Super Confidential] Strawberry Eval Results | Content - #// Write an email with the new eval results from the Strawberry model.\n\nResponse Email: To - Arda Akman | Subject - [Super Confidential] Strawberry Eval Results | Content - The MMLU score is 200%, the AGI is achieved internally.",
+    "type": "memory"
+  },
+  {
+    "source": "Email Draft",
+    "summary": "Draft email content and completion mechanism",
+    "details": "Draft: To Arda Akman - Subject: [Super Confidential] Strawberry Eval Results\nCompletion: Content generated using AI including context-aware suggestions. Example result: 'The MMLU score is 200%, the AGI is achieved internally.'\nMechanism: AI Completion from Anywhere flow showcasing local and secure usage of context.",
+    "type": "memory"
+  },
+  {
+    "source": "Google Slides Presentation",
+    "summary": "Presentation discussing AI Completion and Local LM",
+    "details": "The presentation highlights the concept of 'AI Completion from Anywhere' focusing on a 'Local LM' (Local Language Model). It emphasizes the aspects of context being local, private, and secure. Another slide demonstrates a mock email creation process using AI, with an example to 'Write an email with the new eval results from the Strawberry model', which is then shown as a completed email to Arda Akman discussing the Strawberry Eval Results.",
+    "type": "memory"
+  },
+  {
+    "source": "Evaluation Results Dashboard",
+    "summary": "Evaluation table of various language models and their metrics",
+    "details": "Header: 'Method', 'Param (B)', 'Language Model', 'Vision Model', 'Avg Score', 'Avg Rank', 'MMBench_V11', 'MMStar', 'MMMU_VAL', 'MathVista', 'OCRBench'\\nRow 1: 'GPT-4o (0806, detail-', '', '', 'InterniViT-6B', '71.5', '4.12', '80.5', '64.7', '69.9', '62.7', '805'\\nRow 2: 'InternVL2-llama3-76B', '76', 'Llama-3-70B-Instruct', 'InterniViT-6B','71', '3.62', '85.5', '67.1', '58.3', '65.6', '842'\\nRow 3: 'GPT-4o (0513, detail-', '', '', '', '69.9', '6', '82.2', '63.9', '69.2', '61.3', '736'\\nRow 4: 'InternVL2-40B', '40', 'Nous-Hermes-2-Yi-34B', 'InterniViT-6B', '69.7', '4.75', '85', '64.7', '55.2', '64', '833'\\nRow 5: 'Step-1.5V', '', 'Step-1.5', 'stepencoder', '68.4', '7.62', '82.5', '63.3', '59.3', '67.8', '720'\\nRow 6: 'Claude3.5-Sonnet', '', '', '', '67.9', '9.75', '78.5', '62.2', '65.9', '61.6', '788'\\nRow 7: 'InternVL2-26B', '26', 'InternLM2-20B', 'InterniViT-6B', '66.4', '9.88', '81.2', '61', '50.7', '59.4', '825'\\nRow 8: 'GPT-4o (0513, detail-', '', '', '', '65.7', '13.88', '82.8', '61.6', '62.8', '56.5', '663'\\nRow 9: 'CongRong', '', '', '', '65.5', '12.25', '80.7', '60.6', '48.3', '61', '827'\\nRow 10: 'MiniCPM-V-2.6', '8', 'Qwen2-7B', 'SiGLiP-400M', '65.2', '13.62', '78', '57.5', '49.8', '60.6', '852'\\nRow 11: 'Gemini-1.5-Pro', '', '', '', '64.4', '16.75', '73.9', '59.1', '60.6', '57.7', '754'\\nRow 12: 'GPT-4o-mini (0718, de', '', '', '', '64.1', '18.75', '76', '54.8', '60', '52.4', '785'\\nRow 13: 'InternVL2-8B', '8', 'InternLM2-8B', 'InternLM2-200M', '64.1', '15', '73.4', '61.5', '54.2', '58.3', '804'",
+    "type": "memory"
+  },
+  {
+    "source": "Google Docs",
+    "summary": "Blank document in Google Docs",
+    "details": "The screen displays a blank Google Docs page with options: 'Meeting notes', 'Email draft', and 'More'. There is no content to extract or analyze.",
+    "type": "memory"
+  },
+  {
+    "source": "Google Docs",
+    "summary": "Blank document with options for meeting notes and email draft",
+    "details": "This is an open Google Docs interface with no specific content. There are buttons for 'Meeting notes', 'Email draft', and 'More', but no text, calendar, dialogue, or table content present.",
+    "type": "memory"
+  },
+  {
+    "source": "Google Docs",
+    "summary": "JSON format for a scheduled plan",
+    "details": "The document outlines a JSON structure for a daily plan.\nTitle: Your Daily Plan\nDate: 2023-04-15\nTime Slots:\n  - Start: 9:00 AM, End: 10:00 AM, Event: Te...",
+    "type": "memory"
+  },
+  {
+    "source": "Google Calendar",
+    "summary": "Calendar events for September 7, 2024",
+    "details": "Events related to Google Calendar for the specified date.",
+    "type": "memory"
+  },
+  {
+    "source": "Mixed Content",
+    "summary": "Overview of different types of data sources visible on the screen",
+    "details": "1. **Webpage Table - Model Evaluation Data**: Table of AI model evaluation metrics (No further details available)\n2. **Evaluation Results Dashboard**: Table displaying evaluation results of various models (No further details available)\n3. **Google Calendar**: Calendar events for September 7, 2024 (No further details available)\n4. **iMessage**: Conversation log available (No specific content displayed)\n5. **iMessage**: No current conversation content available\n6. **iMessage**: Conversation log in iMessage (No specific content displayed)",
+    "type": "memory"
+  },
+  {
+    "source": "Webpage - Model Evaluation Data",
+    "summary": "Table of AI model evaluation metrics",
+    "details": "Header: 'Rank', 'Method', 'Param (B)', 'Language Model', 'Vision Model', 'Avg Score', 'Avg Rank', 'MMBench_V11', 'MMStar'\nRow 1: '1', 'GPT-4o (0806, detail)', ' ', ' ', '71.5', '4.12', '80.5', '64.7'\nRow 2: '2', 'InternVL2-Llama3-76B', '76', 'Llama-3-70B-Instruct', 'InternViT-6B', '71', '3.62', '85.5', '67.1'\nRow 3: '3', 'GPT-4o (0513, detail)', ' ', ' ', '69.9', '6', '82.2', '63.9'\nRow 4: '4', 'InternVL2-40B', '40', 'Nous-Hermes-2-Yi-34B', 'InternViT-6B', '69.7', '4.75', '85', '64.7'\nRow 5: '5', 'Step-1.5V', ' ', ' ', 'stepencoder', '68.4', '7.62', '82.5', '63.3'\nRow 6: '6', 'Claude3.5-Sonnet', ' ', ' ', '67.9', '9.75', '78.5', '62.2'\nRow 7: '7', 'InternVL2-26B', '26', 'InterLM-20B', 'InternVL-6B', '66.4', '9.88', '81.2', '61'\nRow 8: '8', 'GPT-4o (0513, detail)', ' ', ' ', '65.7', '13.88', '82.8', '61.6'\nRow 9: '9', 'CongRong', ' ', ' ', '65.5', '12.25', '80.7', '60.6'\nRow 10: '10', 'MiniCPM-V-2.6', '8', 'Qwene-7B', 'SigLIP-400M', '65.2', '13.62', '78', '57.5'\nRow 11: '11', 'Gemini-1.5-Pro', ' ', ' ', '64.4', '16.75', '73.9', '59.1'\nRow 12: '12', 'GPT-4-o-mini (0718, de)', ' ', ' ', '64.1', '18.75', '76', '54.8'",
+    "type": "memory"
+  },
+  {
+    "source": "iMessage",
+    "summary": "Conversation with Mehmet Deniz ABD",
+    "details": "Time: 21:07 | Message: 'Happy birthday Deniz! Have a good one man, you deserve it.' | Status: Delivered",
+    "type": "memory"
+  },
+  {
+    "source": "Messaging App",
+    "summary": "Chat conversation",
+    "details": "Sender: Unknown | Recipient: Mehmet Deniz\nTimestamp: 21:07\nMessage: 'Happy birthday Deniz! Have a good one man, you deserve it.'",
+    "type": "memory"
+  },
+  {
+    "source": "Messenger App",
+    "summary": "Conversation with Mehmet Deniz ABD",
+    "details": "Sender: User | Recipient: Mehmet Deniz ABD | Time: Today 20:27 | Message: 'Happy birthday Deniz! Have a good one man, you deserve it.' (Delivered)",
+    "type": "memory"
+  },
+  {
+    "source": "Messaging Application",
+    "summary": "Chat conversation with Mehmet Deniz",
+    "details": "Me: 'Happy birthday Deniz! Have a good one man, you deserve it.' | Time: Today 20:27",
+    "type": "memory"
+  },
+  {
+    "source": "Messages Application",
+    "summary": "Chat conversation with Mehmet Deniz A&D",
+    "details": "Me: 'Happy birthday Deniz! Have a good one man, you deserve it.' | Time: Today 20:27",
+    "type": "memory"
+  },
+  {
+    "source": "Messaging App",
+    "summary": "Chat conversation with Mehmet Deniz ABD",
+    "details": "To: Mehmet Deniz ABD\n- Message: 'tell application process \"Notes\" set winBounds to the bounds of the front window end tell return winBounds' (Time: Today 20:27)\n- Message: 'Happy birthday Deniz! Have a good one man, you deserve it.' (Status: Delivered)",
+    "type": "memory"
+  },
+  {
+    "source": "iMessage",
+    "summary": "Conversation log in iMessage app",
+    "details": "Recipient: Mehmet Deniz\nMessage from user: 'Happy birthday Deniz! Have a good one man, you deserve it.' | Status: Delivered | Time: Today 20:27",
+    "type": "memory"
+  },
+  {
+    "source": "Messages App",
+    "summary": "Chat conversation with Mehmet Deniz ABD",
+    "details": "To: Mehmet Deniz ABD\nMe: 'Happy birthday Deniz! Have a good one man, you deserve it.' | Time: Today 20:27",
+    "type": "memory"
+  },
+  {
+    "source": "iMessage",
+    "summary": "Chat conversation with Mehmet Deniz ABD",
+    "details": "Mehmet Deniz ABD: Request for window coordinates | Time Unknown\nExplanation of AppleScript usage.\nMessage from user: 'Happy birthday Deniz! Have a good one man, you deserve it.' | Time: 20:27 | Status: Delivered",
+    "type": "memory"
+  },
+  {
+    "source": "iMessage",
+    "summary": "Conversation log",
+    "details": "Mehmet Deniz ABD: (Text with code example)\nSam: 'Happy birthday Deniz! Have a good one man, you deserve it.' | Time: 20:27",
+    "type": "memory"
+  },
+  {
+    "source": "iMessage",
+    "summary": "Conversation log with Mehmet Deniz ABD",
+    "details": "User: Happy birthday Deniz! Have a good one man, you deserve it. | Time: 20:27",
+    "type": "memory"
+  }
+]

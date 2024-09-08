@@ -26,7 +26,7 @@ app.add_middleware(
 )
 
 OLLAMA_API_BASE = "http://127.0.0.1:11500"
-MODEL_NAME = "gemma2:2b"
+MODEL_NAME = "phi3"
 TEST = False
 
 general_agent = GeneralistModel()
@@ -131,16 +131,16 @@ async def process_image_endpoint(file: UploadFile = File(...), source: str = Bod
         tmp_file.write(contents)
         tmp_file_path = tmp_file.name
     
-    result = general_agent.forward(tmp_file_path)
+    result = json.loads(general_agent.forward(tmp_file_path))
+    result['type'] = 'memory'
     with open(STREAM_PATH, "w") as file:
-        json.dump(result, file)
+        json.dump(json.dumps(result), file)
     # Add the result as a new entry in the HISTORY_PATH
     try:
         with open(HISTORY_PATH, "r+") as file:
             
             history = json.load(file)
             print("history: ", history)
-            result['type'] = 'memory'
             history.append(result)
             file.seek(0)
             json.dump(history, file, indent=2)
