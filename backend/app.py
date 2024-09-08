@@ -25,8 +25,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-OLLAMA_API_BASE = "http://localhost:11434"
-MODEL_NAME = "llava"
+OLLAMA_API_BASE = "http://127.0.0.1:11500"
+MODEL_NAME = "gemma2:2b"
 TEST = False
 
 general_agent = GeneralistModel()
@@ -115,6 +115,7 @@ async def process_prompt(prompt: str = Body(...), source: str = Body(...)):
             "summary": response[:100] if len(response) > 100 else response,
             "details": response
         }
+        
 
         # This endpoint actually has to return information to the caller.
         return {"result": response}
