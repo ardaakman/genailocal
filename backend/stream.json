@@ -1,1 +1,1 @@
-"{\"source\":\"iTerm2 Terminal\",\"summary\":\"Terminal command execution\",\"details\":\"Command: 'ollama run phi3'\\nTime: [19:24:33]\\nProgress: 'pulling manifest'\\nFile: '633fc5be925f...'\\nStatus: '0% | 10 MB/2.2 GB | 2.8 MB/s | 13m3s'\"}"
+"{\"source\":\"iTerm2 - Terminal\",\"summary\":\"Terminal output during a file download\",\"details\":\"Command: ollama run phi3\\nTimestamp in terminal: [19:24:33]\\nDownload progress: 3% complete, pulling 633fc5be925f..., 59 MB/2.2 GB, 1.2 MB/s, estimated time 28m 46s remaining.\"}"

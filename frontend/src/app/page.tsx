@@ -19,8 +19,8 @@ const Memory: React.FC = () => {
     if (data) {
       if (data.type === "memory") {
         setMemories((prev) => [
-          ...prev,
           { ...data, timestamp: new Date() } as MemoryItem,
+          ...prev,
         ]);
         setShowToast(true);
         setTimeout(() => setShowToast(false), 3000);
