@@ -34,7 +34,14 @@ ConversationModel = ConversationModel()
 ollama_agent = OllamaModel(model_name=MODEL_NAME, ollama_endpoint=OLLAMA_API_BASE)
 
 HISTORY_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "history.json")
-print(HISTORY_PATH)
+STREAM_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "stream.json")
+
+
+# Check if history file exists, if not create it with an empty array
+if not os.path.exists(HISTORY_PATH):
+    with open(HISTORY_PATH, 'w') as f:
+        json.dump([], f)
+
 class ConnectionManager:
     def __init__(self):
         self.active_connections: List[WebSocket] = []
@@ -100,25 +107,6 @@ async def process_prompt(prompt: str = Body(...), source: str = Body(...)):
     ollama_agent.forward(prompt)
 
 
-# async def process_prompt(file: UploadFile = File(...), prompt: str = Body(...), source: str = Body(...)):
-#     contents = await file.read()
-#     image = Image.open(io.BytesIO(contents))
-    
-#     # result = process_image_and_text_local_llm(image, prompt)
-#     encoded_image = encode_image_to_base64(image)
-#     result = json.loads(general_agent.forward(encoded_image))
-#     data = {
-#         "type": "autocomplete",
-#         "source": source,
-#         "summary": result[:100] if len(result) > 100 else result,
-#         "details": result
-#     }
-#     # Write to history.json
-#     with open(HISTORY_PATH, "w") as file:
-#         json.dump(data, file)
-
-#     # This endpoint actually has to return information to the caller.
-#     return {"result": result}
 
 @app.post("/process-image/")
 async def process_image_endpoint(file: UploadFile = File(...), source: str = Body(...)):
@@ -128,18 +116,20 @@ async def process_image_endpoint(file: UploadFile = File(...), source: str = Bod
         tmp_file_path = tmp_file.name
     
     result = general_agent.forward(tmp_file_path)
-    print("Result: ", result)
-    # image = Image.open(tmp_file_path)
-    # result = await process_image_with_local_llm(image)
-    # data = {
-    #     "type": "memory",
-    #     "source": source,
-    #     "summary": result[:100] if len(result) > 100 else result,
-    #     "details": result
-    # }
-    # Write to history.json still. No need to return anything.
-    with open(HISTORY_PATH, "w") as file:
+    with open(STREAM_PATH, "w") as file:
         json.dump(result, file)
+    # Add the result as a new entry in the HISTORY_PATH
+    try:
+        with open(HISTORY_PATH, "r+") as file:
+            
+            history = json.load(file)
+            print("history: ", history)
+            history.append(result)
+            file.seek(0)
+            json.dump(history, file, indent=2)
+            file.truncate()
+    except Exception as e:
+        print(f"Error updating history: {str(e)}")
     return
 
 @app.websocket("/")
@@ -152,13 +142,13 @@ async def websocket_endpoint(websocket: WebSocket):
             await manager.send_personal_message({"token": "loading"}, websocket)
 
             # Check if history.json exists
-            if os.path.exists(HISTORY_PATH):
+            if os.path.exists(STREAM_PATH):
                 try:
-                    with open(HISTORY_PATH, "r") as file:
+                    with open(STREAM_PATH, "r") as file:
                         data = json.loads(json.load(file))
                         data["type"] = "memory"
                     if not TEST:
-                        os.remove(HISTORY_PATH)  # Delete the file after reading
+                        os.remove(STREAM_PATH)  # Delete the file after reading
                 except json.JSONDecodeError:
                     data = {"error": "Invalid or empty data file"}
                 except Exception as e:
