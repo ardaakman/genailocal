@@ -67,3 +67,82 @@ For each section, output a JSON object with the following structure:
 }
 ```
 """
+
+conversation_prompt = """
+**Task:**
+Analyze a UI screenshot of a chat interface and extract the main conversation in focus. Ignore side conversations or threads and concentrate solely on the primary dialogue.
+
+**Instructions:**
+
+1. **Main Conversation:**
+   - Identify the person or group we are corresponding with in the main chat window.
+   - Extract all messages from the conversation, including:
+     - Sender
+     - Message content
+   - Ignore any sidebars or secondary threads.
+   
+2. **Format the conversation data into JSON:**
+   - Use the provided JSON structure to organize the data.
+   - Each message in the conversation should have the sender and message logged.
+
+**Expected Output:**
+The conversation should be formatted as follows using the classes `ChatMessage` and `Conversation`:
+
+```json
+{
+  "person_we_are_corresponding_to": "string",  # Name of the person or group in the main chat
+  "messages": [
+    {
+      "sender": "string",  # The name or ID of the person who sent the message
+      "message": "string"  # The actual message content
+    },
+    {
+      "sender": "string",
+      "message": "string"
+    }
+  ]
+}
+```
+
+**Examples:**
+
+1. **Slack Conversation Example:**
+
+```json
+{
+  "person_we_are_corresponding_to": "John Doe",
+  "messages": [
+    {
+      "sender": "John Doe",
+      "message": "Hey, can you share the report?"
+    },
+    {
+      "sender": "Me",
+      "message": "Sure, I'll send it in a few minutes."
+    }
+  ]
+}
+```
+
+2. **Messaging App Example:**
+
+```json
+{
+  "person_we_are_corresponding_to": "Project Team",
+  "messages": [
+    {
+      "sender": "Alice",
+      "message": "The deadline is approaching. Any updates?"
+    },
+    {
+      "sender": "Me",
+      "message": "We're nearly done, just finalizing a few things."
+    },
+    {
+      "sender": "Bob",
+      "message": "I'll help with the final review."
+    }
+  ]
+}
+```
+"""
